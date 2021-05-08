@@ -10,7 +10,7 @@ const BASE_URL = process.env.NODE_ENV === 'procution' ? '/iview-admin' : '/'
 module.exports = {
   lintOnSave: false,
   //项目基本路径
-  baseUrl: Base_URL,
+  // baseUrl: Base_URL,
   chainWebpack: config => {
     config.resolve.alias
     // 代表当前路径拼接上src

@@ -83,6 +83,10 @@ export default [
   },
   // 所以需要在这里添加一个配置，一定要放置在最后。因为他是从上自下执行的，如果放到上面会影响其他路由。
   {
+    path: '/store',
+    component: () =>  import('@/views/store.vue')
+  },
+  {
     path: '*',
     component: () => import('@/views/error_404.vue')
   }

@@ -39,9 +39,15 @@ export default [
     // name为动态路由参数
     path: '/argu/:name',
     name: 'argi',
-    conponent: () => import('@/views/argu.vue'),
+    component: () => import('@/views/argu.vue'),
     //如果想传入值可以在这里配置，就会把这里的name传入到组件。就是浏览器输入的值。
     props: true
+  },
+  {
+    // 封装count-to组件
+    path: '/count-to',
+    name: 'count_to',
+    component: () => import('@/views/count-to.vue'),
   },
   {
     path: '/parent',
@@ -84,7 +90,7 @@ export default [
   // 所以需要在这里添加一个配置，一定要放置在最后。因为他是从上自下执行的，如果放到上面会影响其他路由。
   {
     path: '/store',
-    component: () =>  import('@/views/store.vue')
+    component: () => import('@/views/store.vue')
   },
   {
     path: '*',

@@ -55,6 +55,11 @@ export default [
     component: () => import('@/views/split-pane.vue'),
   },
   {
+    path: '/render-page',
+    name: 'render_page',
+    component: () => import('@/views/render-page.vue'),
+  },
+  {
     path: '/parent',
     name: 'parent',
     component: () => import('@/views/parent.vue'),

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { baseURL } from '@/config/index'
+import { getToken } from '@/lib/util'
 // 用类的形式封装
 class HttpRequest {
   // constructor方法是每个类必须的方法，如果没有添加它会默认添加这个方法。
@@ -27,6 +28,8 @@ class HttpRequest {
       //Spin组件，添加遮罩层，覆盖遮罩层后就无法点击。Spin.show()
       if(!Object.keys(this.queue).length) {}/* Spin.show() */
       this.queue[url] = true
+      // 传递token，每次调用都会获取token，并把token放到header这个字段里面。
+      config.headers['Authorization'] = getToken()
       return config
     }, error => {
       return Promise.reject(error)
@@ -34,8 +37,8 @@ class HttpRequest {
     // 响应拦截器
     instance.interceptors.response.use(res => {
       delete this.queue[url]
-      const { data, status} = res
-      return { data, status }
+      const { data } = res
+      return data
     }, error => {
       delete this.queue[url]
       return Promise.reject(error)

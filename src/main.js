@@ -5,7 +5,7 @@ import store from './store'
 import Bus from './lib/bus.js'
 import CountTO from '_c/count-to'
 //在生产环境不需要mock，判断是否需要mock
-if(process.env.NODE_ENV !== 'production') require('./mock')
+// if(process.env.NODE_ENV !== 'production') require('./mock')
 
 Vue.config.productionTip = false
 

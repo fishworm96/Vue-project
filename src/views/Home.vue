@@ -6,6 +6,7 @@
     <button @click="handleClick('push')">返回上一页</button>
     <button @click="handleClick('parent')">替换到parent</button>
     <button @click="getInfo">请求数据</button>
+    <button @click="handleLogout">退出登录</button>
     <router-view></router-view>
   </div>
 </template>
@@ -14,6 +15,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import { getUserInfo } from '@/api/user.js'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Home',
@@ -39,6 +41,9 @@ export default {
     else next(false)
   },
   methods: {
+    ...mapActions([
+      'logout'
+    ]),
     handleClick (type) {
       // this.$router.go(-1)
       if (type === 'back') this.$router.back()
@@ -60,6 +65,12 @@ export default {
     getInfo () {
       getUserInfo({ userId: 21}).then(res => {
         console.log('res: ', res)
+      })
+    },
+    handleLogout() {
+      this.logout()
+      this.$router.push({
+        name: 'login'
       })
     }
   }

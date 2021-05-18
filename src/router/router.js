@@ -5,7 +5,7 @@ export default [
     path: '/',
     //当问的也是首页
     alias: '/home_page',
-    name: 'Home',
+    name: 'home',
     component: Home,
     // 代表当前这个参数就是路由对象，如果想返回一个对象使用一个括号抱住，或者直接使用return {}
     props: router => ({

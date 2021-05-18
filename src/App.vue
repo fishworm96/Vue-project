@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 // 这里是name的值。这里是页面进入的效果
 .router-enter{
   opacity: 0;
@@ -53,13 +53,13 @@ export default {
   opacity: 0;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+// #app {
+//   font-family: Avenir, Helvetica, Arial, sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   text-align: center;
+//   color: #2c3e50;
+// }
 
 #nav {
   padding: 30px;

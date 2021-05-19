@@ -4,11 +4,11 @@
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
     </div>
-    <transition-group name="routerTransition">
+    <!-- <transition-group name="routerTransition"> -->
       <router-view key="default" />
       <router-view key="email" name="email" />
       <router-view key="tel" name="tel" />
-    </transition-group>
+    <!-- </transition-group> -->
 
   </div>
 </template>
@@ -31,7 +31,13 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
+html,body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
 // 这里是name的值。这里是页面进入的效果
 .router-enter{
   opacity: 0;
@@ -53,24 +59,13 @@ export default {
   opacity: 0;
 }
 
-// #app {
-//   font-family: Avenir, Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   text-align: center;
-//   color: #2c3e50;
-// }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // text-align: center;
+  color: #2c3e50;
+  height: 100%;
 }
+
 </style>

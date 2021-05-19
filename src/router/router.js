@@ -1,20 +1,19 @@
 import Home from '@/views/Home.vue'
+import Layout from '@/views/layout.vue'
 
 export default [
   {
     path: '/',
-    //当问的也是首页
+    //当访问的页是首页
     alias: '/home_page',
     name: 'home',
-    component: Home,
-    // 代表当前这个参数就是路由对象，如果想返回一个对象使用一个括号抱住，或者直接使用return {}
-    props: router => ({
-      //想根据query里的food来传入这个属性
-      food: router.query.food
-    }),
-    beforeEnter: (to, from, next) => {
-      next()
-    }
+    component: Layout,
+    children: [
+      {
+        path: 'home',
+        component: Home
+      }
+    ]
   },
   {
     path: '/login',

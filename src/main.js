@@ -3,14 +3,16 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Bus from './lib/bus.js'
-import CountTO from '_c/count-to'
+import iview from 'iview'
+import 'iview/dist/styles/iview.css'
 //在生产环境不需要mock，判断是否需要mock
-// if(process.env.NODE_ENV !== 'production') require('./mock')
+if(process.env.NODE_ENV !== 'production') require('./mock')
 
 Vue.config.productionTip = false
 
 // bus注册到根实例
 Vue.prototype.$bus = Bus
+Vue.use(iview)
 
 // const handleClick = event => {
 //   console.log(event)

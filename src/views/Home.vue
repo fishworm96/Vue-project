@@ -1,13 +1,27 @@
 <template>
   <div class="home">
-    <!-- 如果没有传入参数，那么就是默认的apple -->
+    <!-- 如果没有传入参数，那么就是默认的apple
     <b>{{ food }}</b>
     <button @click="handleClick('back')">返回上一页</button>
     <button @click="handleClick('push')">返回上一页</button>
     <button @click="handleClick('parent')">替换到parent</button>
     <button @click="getInfo">请求数据</button>
     <button @click="handleLogout">退出登录</button>
-    <router-view></router-view>
+    <router-view></router-view> -->
+    <Row>
+      <i-col></i-col>
+    </Row>
+    <Row :gutter="10">
+      <i-col span="12"></i-col>
+      <i-col span="12"></i-col>
+    </Row>
+    <Row :gutter="10"
+         class="blue">
+      <i-col :md="6" :sm="12" :xs="24"></i-col>
+      <i-col :md="6" :sm="12" :xs="24"></i-col>
+      <i-col :md="6" :sm="12" :xs="24"></i-col>
+      <i-col :md="6" :sm="12" :xs="24"></i-col>
+    </Row>
   </div>
 </template>
 
@@ -63,11 +77,11 @@ export default {
       }
     },
     getInfo () {
-      getUserInfo({ userId: 21}).then(res => {
+      getUserInfo({ userId: 21 }).then(res => {
         console.log('res: ', res)
       })
     },
-    handleLogout() {
+    handleLogout () {
       this.logout()
       this.$router.push({
         name: 'login'
@@ -76,3 +90,20 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+.home {
+  .ivu-col {
+    height: 50px;
+    margin-top: 10px;
+    background-color: pink;
+    background-clip: content-box;
+  }
+  .blue {
+    .ivu-col {
+      background: blue;
+      background-clip: content-box;
+    }
+  }
+}
+</style>

@@ -5,7 +5,7 @@ const resolve = dir => path.join(__dirname, dir)
 //判断开发环境还是生产环境
 // '/'一个斜线意思是指定在域名的根目录下
 //如果是开发环境只用写一个斜杠
-const BASE_URL = process.env.NODE_ENV === 'procution' ? '/iview-admin' : '/'
+const BASE_URL = process.env.NODE_ENV === 'procution' ? '/' : '/'
 
 module.exports = {
   lintOnSave: false,
@@ -23,6 +23,6 @@ module.exports = {
   productionSourceMap: false,
   // 配置跨域，告诉开发服务器将任何未知请求，就是没有匹配到静态文件的请求都代理到这个url来满足跨域的请求
   devServer: {
-    proxy: 'http://localhost:3000'
+    // proxy: 'http://localhost:3000'
   }
 }

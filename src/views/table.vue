@@ -2,7 +2,6 @@
   <div>
     <!-- <edit-table :columns="columns" v-model="tableData" @on-edit="handleEdit"></edit-table> -->
     <edit-table-mul :columns="columns" v-model="tableData"></edit-table-mul>
-    <Button @click="turnTo">打开参数页</Button>
   </div>
 </template>
 
@@ -26,17 +25,8 @@ export default {
     }
   },
   methods: {
-    handleEdit ({ row, index, column, newValue }) {
-      console.log(row, index, column, newValue)
-    },
-    turnTo () {
-      let id = 'params' + (Math.random() * 100).toFixed(0)
-      this.$router.push({
-        name: 'params',
-        params: {
-          id
-        }
-      })
+    handleEdit({row, index, column, newValue}) {
+      console.log({row, index, column, newValue})
     }
   },
   mounted () {
@@ -46,7 +36,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -12,11 +12,6 @@ export default [
       {
         path: 'home',
         component: Home
-      },
-      {
-        path: 'table',
-        name: 'table',
-        component: () => import('@/views/table.vue')
       }
     ]
   },
@@ -67,6 +62,32 @@ export default [
     path: '/menu-page',
     name: 'menu_page',
     component: () => import('@/views/menu-page.vue'),
+  },
+  {
+    path: '/component',
+    name: 'component',
+    component: Layout,
+    meta: {
+      title: '表格'
+    },
+    children: [
+      {
+        path: 'table',
+        name: 'table_page',
+        meta: {
+          title: '表格'
+        },
+        component: () => import('@/views/table.vue')
+      },
+      {
+        path: 'folder_tree',
+        name: 'folder_tree',
+        meta: {
+          title: '文件夹'
+        },
+        component: () => import('@/views/folder-tree/folder-tree.vue')
+      }
+    ]
   },
   {
     path: '/parent',

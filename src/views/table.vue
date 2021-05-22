@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <edit-table :columns="columns" v-model="tableData" @on-edit="handleEdit"></edit-table> -->
-    <edit-table-mul :columns="columns" v-model="tableData"></edit-table-mul>
+    <edit-table :columns="columns" v-model="tableData" @on-edit="handleEdit"></edit-table>
+    <!-- <edit-table-mul :columns="columns" v-model="tableData"></edit-table-mul> -->
   </div>
 </template>
 

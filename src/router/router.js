@@ -86,6 +86,14 @@ export default [
           title: '文件夹'
         },
         component: () => import('@/views/folder-tree/folder-tree.vue')
+      },
+      {
+        path: 'upload',
+        name: 'upload',
+        meata: {
+          title: '上传'
+        },
+        component: () => import ('@/views/upload.vue')
       }
     ]
   },

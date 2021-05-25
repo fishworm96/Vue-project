@@ -23,6 +23,6 @@ module.exports = {
   productionSourceMap: false,
   // 配置跨域，告诉开发服务器将任何未知请求，就是没有匹配到静态文件的请求都代理到这个url来满足跨域的请求
   devServer: {
-    // proxy: 'http://localhost:3000'
+    proxy: 'http://localhost:3000'
   }
 }

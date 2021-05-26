@@ -6,7 +6,7 @@ import Bus from './lib/bus.js'
 import iview from 'iview'
 import 'iview/dist/styles/iview.css'
 //在生产环境不需要mock，判断是否需要mock
-if(process.env.NODE_ENV !== 'production') require('./mock')
+// if(process.env.NODE_ENV !== 'production') require('./mock')
 
 Vue.config.productionTip = false
 

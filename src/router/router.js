@@ -12,6 +12,13 @@ export default [
       {
         path: 'home',
         component: Home
+      },
+      {
+        path: 'form',
+        meta: {
+          title: '表单'
+        },
+        component: () => import('@/views/form.vue')
       }
     ]
   },

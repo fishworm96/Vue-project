@@ -4,8 +4,9 @@ import state from './state'
 import mutations from './mutations'
 import actions from './actions'
 import user from './module/user'
+import router from './module/router'
 import getters from './getter'
-import saveInLocal from './plugin/saveInLocal.js'
+// import saveInLocal from './plugin/saveInLocal.js'
 
 Vue.use(Vuex)
 
@@ -16,8 +17,11 @@ export default new Vuex.Store({
   mutations,
   actions,
   modules: {
-    user
+    user,
+    router
   },
-  // 如何使用，这样插件就加载上了
-  plugins: [ saveInLocal ]
+  //关闭严格模式
+  strict: false
+  // 持久化插件。如何使用，这样插件就加载上了
+  // plugins: [ saveInLocal ]
 })

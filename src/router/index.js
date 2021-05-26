@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import routes from './router'
+import { routes } from './router'
 import store from '@/store'
-import {setTitle, setToken, getToken} from '@/lib/util.js'
+import { setTitle, setToken, getToken } from '@/lib/util.js'
 
 Vue.use(VueRouter)
 
@@ -26,19 +26,39 @@ router.beforeEach((to, from, next) => {
   //   //没有登录就放行，跳转套登录页面
   //   else next()
   // }
-  //获取token判断是否登录过
+
+    // //获取token判断是否登录过
+    // const token = getToken()
+    // if (token) {
+    //   store.dispatch('authorization', token).then(() => {
+    //     if (to.name === 'login') next({ name: 'home' })
+    //     else next()
+    //   }).catch(() => {
+    //     setToken('')
+    //     next({ name: 'login' })
+    //   })
+    // } else {
+    //   if (to.name === 'login') next()
+    //   else next({ name: 'login' })
+    // }
+
   const token = getToken()
-  if(token) {
-    store.dispatch('authorization', token).then(() => {
-      if(to.name === 'login') next({ name: 'home'})
-      else next()
-    }).catch(() => {
-      setToken('')
-      next({ name: 'login' })
-    })
-  }else {
-    if(to.name === 'login') next()
-    else next({ name: 'login'})
+  if (token) {
+    if (!store.state.router.hasGetRules) {
+      store.dispatch('authorization').then(rules => {
+        store.dispatch('concatRoutes', rules).then(routers => {
+          router.addRoutes(routers)
+          next({ ...to, replace: true })
+        }).catch(() => {
+          next({ name: 'login' })
+        })
+      })
+    } else {
+      next()
+    }
+  } else {
+    if (to.name === 'login') next()
+    else next({ name: 'login' })
   }
 })
 

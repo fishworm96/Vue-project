@@ -1,7 +1,7 @@
 import Home from '@/views/Home.vue'
 import Layout from '@/views/layout.vue'
 
-export default [
+export const routerMap =  [
   {
     path: '/',
     //当访问的页是首页
@@ -11,6 +11,7 @@ export default [
     children: [
       {
         path: 'home',
+        name: 'home_index',
         component: Home
       },
       {
@@ -21,11 +22,6 @@ export default [
         component: () => import('@/views/form.vue')
       }
     ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/login.vue')
   },
   {
     path: '/about',
@@ -117,6 +113,7 @@ export default [
   },
   {
     path: '/named_view',
+    name: 'named_view',
     //这里要多加个s，代表多个组件
     components: {
       //如果没有命名router-view就加载这个default组件
@@ -127,6 +124,7 @@ export default [
   },
   {
     path: '/main',
+    name: 'main',
     //当我们访问/路径时就重定向到main路径
     /* redirect: '/'
     //也可以使用命名路由
@@ -146,10 +144,17 @@ export default [
   {
     path: '/store',
     component: () => import('@/views/store.vue')
+  }
+]
+
+export const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue')
   },
   {
     path: '*',
     component: () => import('@/views/error_404.vue')
   }
-
 ]

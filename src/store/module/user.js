@@ -3,12 +3,16 @@ import { setToken } from '@/lib/util'
 
 const state = {
   // 在模块中使用
-  userName: 'Lison'
+  userName: 'Lison',
+  rules: {}
 }
 const mutations = {
   // 第一个参数就是要作用的名称，第二个参数是传过来的值
   SET_USER_NAME (state, params) {
     state.userName = params
+  },
+  SET_RULES(state, rules) {
+    state.rules = rules
   }
 }
 const actions = {
@@ -44,7 +48,8 @@ const actions = {
           reject(new Error('token error'))
         } else {
           setToken(res.data.token)
-          resolve()
+          resolve(res.data.rules.page)
+          commit('SET_RULES', res.data.rules.component)
         }
       }).catch(error => {
         reject(error)

@@ -35,7 +35,7 @@
 
 <script>
 import { doCustomTimes } from '@/lib/tools'
-import VirtualList from 'vue-virtual-scroll-list'
+// import VirtualList from 'vue-virtual-scroll-list'
 export default {
   components: {
     VirtualList

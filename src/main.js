@@ -5,6 +5,10 @@ import store from './store'
 import Bus from './lib/bus.js'
 import iview from 'iview'
 import 'iview/dist/styles/iview.css'
+import '@/assets/font/iconfont.js'
+import '@/assets/font/iconfont.css'
+import IconFont from '_c/icon-font'
+import IconSvg from '_c/icon-svg'
 //在生产环境不需要mock，判断是否需要mock
 if(process.env.NODE_ENV !== 'production') require('./mock')
 
@@ -12,6 +16,8 @@ Vue.config.productionTip = false
 
 // bus注册到根实例
 Vue.prototype.$bus = Bus
+Vue.component('icon-font', IconFont)
+Vue.component('icon-svg', IconSvg)
 Vue.use(iview)
 
 // const handleClick = event => {

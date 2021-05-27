@@ -1,70 +1,77 @@
 import Home from '@/views/Home.vue'
 import Layout from '@/views/layout.vue'
-
-export const routerMap =  [
+export const routerMap = [
   {
-    path: '/',
-    //当访问的页是首页
-    alias: '/home_page',
+    path: '/home',
     name: 'home',
     component: Layout,
+    meta: {
+      title: '首页'
+    },
     children: [
       {
-        path: 'home',
+        path: 'home_index',
         name: 'home_index',
-        component: Home
-      },
-      {
-        path: 'form',
         meta: {
-          title: '表单'
+          title: '首页'
         },
-        component: () => import('@/views/form.vue')
+        component: Home
       }
     ]
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    //传入一个对象，页面上显示的就是这个值。
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
     props: {
       food: 'banana'
     },
     meta: {
-      //想让每个跳转的页面title都不一样
       title: '关于'
     }
   },
-  //动态路由匹配
   {
-    // name为动态路由参数
-    path: '/argu/:name',
-    name: 'argi',
-    component: () => import('@/views/argu.vue'),
-    //如果想传入值可以在这里配置，就会把这里的name传入到组件。就是浏览器输入的值。
-    props: true
-  },
-  {
-    // 封装count-to组件
     path: '/count-to',
     name: 'count_to',
-    component: () => import('@/views/count-to.vue'),
+    meta: {
+      title: 'count_to'
+    },
+    component: () => import('@/views/count-to.vue')
   },
   {
-    path: '/split-pane',
-    name: 'split_pane',
-    component: () => import('@/views/split-pane.vue'),
-  },
-  {
-    path: '/render-page',
-    name: 'render_page',
-    component: () => import('@/views/render-page.vue'),
-  },
-  {
-    path: '/menu-page',
+    path: '/menu_page',
     name: 'menu_page',
-    component: () => import('@/views/menu-page.vue'),
+    meta: {
+      title: 'menu_page'
+    },
+    component: () => import('@/views/menu-page.vue')
+  },
+  {
+    path: '/upload',
+    name: 'upload',
+    meta: {
+      title: 'upload'
+    },
+    component: () => import('@/views/upload.vue')
+  },
+  {
+    path: '/form',
+    name: 'form',
+    meta: {
+      title: 'form'
+    },
+    component: () => import('@/views/form.vue')
+  },
+  {
+    path: '/optimize',
+    name: 'optimize',
+    meta: {
+      title: 'optimize'
+    },
+    component: () => import('@/views/optimize.vue')
   },
   {
     path: '/component',
@@ -91,22 +98,46 @@ export const routerMap =  [
         component: () => import('@/views/folder-tree/folder-tree.vue')
       },
       {
-        path: 'upload',
-        name: 'upload',
-        meata: {
-          title: '上传'
+        path: 'params/:id',
+        name: 'params',
+        meta: {
+          title: '参数'
         },
-        component: () => import ('@/views/upload.vue')
+        component: () => import('@/views/argu.vue'),
+        props: true
       }
     ]
   },
   {
+    path: '/render_page',
+    name: 'render_page',
+    meta: {
+      title: 'render_page'
+    },
+    component: () => import('@/views/render-page.vue')
+  },
+  {
+    path: '/split-pane',
+    name: 'split_pane',
+    meta: {
+      title: 'split_pane'
+    },
+    component: () => import('@/views/split-pane.vue')
+  },
+  {
     path: '/parent',
     name: 'parent',
+    meta: {
+      title: 'parent'
+    },
     component: () => import('@/views/parent.vue'),
     children: [
       {
         path: 'child',
+        name: 'child',
+        meta: {
+          title: 'child'
+        },
         component: () => import('@/views/child.vue')
       }
     ]
@@ -114,9 +145,10 @@ export const routerMap =  [
   {
     path: '/named_view',
     name: 'named_view',
-    //这里要多加个s，代表多个组件
+    meta: {
+      title: 'named_view'
+    },
     components: {
-      //如果没有命名router-view就加载这个default组件
       default: () => import('@/views/child.vue'),
       email: () => import('@/views/email.vue'),
       tel: () => import('@/views/tel.vue')
@@ -125,24 +157,17 @@ export const routerMap =  [
   {
     path: '/main',
     name: 'main',
-    //当我们访问/路径时就重定向到main路径
-    /* redirect: '/'
-    //也可以使用命名路由
-    redirect: {
-      name: 'home'
-    } */
-    //还可以使用一个方法
-    redirect: to => {
-      //这里必须return一个对象或字符串路径
-      return {
-        name: 'home'
-      }
-      //还可以直接简写成 to => '/'
-    }
+    meta: {
+      title: 'main'
+    },
+    redirect: to => '/'
   },
-  // 所以需要在这里添加一个配置，一定要放置在最后。因为他是从上自下执行的，如果放到上面会影响其他路由。
   {
     path: '/store',
+    name: 'store',
+    meta: {
+      title: 'sotre'
+    },
     component: () => import('@/views/store.vue')
   }
 ]
@@ -151,7 +176,18 @@ export const routes = [
   {
     path: '/login',
     name: 'login',
+    meta: {
+      title: '登录'
+    },
     component: () => import('@/views/login.vue')
+  },
+  {
+    path: '/icon_page',
+    name: 'icon_page',
+    meta: {
+      title: '图标'
+    },
+    component: () => import('@/views/icon_page.vue')
   },
   {
     path: '*',

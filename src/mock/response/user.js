@@ -78,7 +78,7 @@ export const authorization = () => {
           count_to: true,
           menu_page: true,
           upload: true,
-          form: false,
+          form: true,
           folder_tree: true,
           table_page: true,
           params: true,
@@ -89,7 +89,8 @@ export const authorization = () => {
           child: true,
           named_view: true,
           store: true,
-          main: true
+          main: true,
+          optimize: true
         },
         component: {
           edit_button: true,

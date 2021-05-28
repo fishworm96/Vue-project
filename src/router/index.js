@@ -27,22 +27,22 @@ router.beforeEach((to, from, next) => {
   //   else next()
   // }
 
-    // //获取token判断是否登录过
+    //获取token判断是否登录过
+    const token = getToken()
+    if (token) {
+      store.dispatch('authorization', token).then(() => {
+        if (to.name === 'login') next({ name: 'home' })
+        else next()
+      }).catch(() => {
+        setToken('')
+        next({ name: 'login' })
+      })
+    } else {
+      if (to.name === 'login') next()
+      else next({ name: 'login' })
+    }
+    
     // const token = getToken()
-    // if (token) {
-    //   store.dispatch('authorization', token).then(() => {
-    //     if (to.name === 'login') next({ name: 'home' })
-    //     else next()
-    //   }).catch(() => {
-    //     setToken('')
-    //     next({ name: 'login' })
-    //   })
-    // } else {
-    //   if (to.name === 'login') next()
-    //   else next({ name: 'login' })
-    // }
-
-  const token = getToken()
   if (token) {
     if (!store.state.router.hasGetRules) {
       store.dispatch('authorization').then(rules => {

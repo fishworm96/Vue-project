@@ -1,27 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import state from './state'
+import getters from './getters'
 import mutations from './mutations'
 import actions from './actions'
 import user from './module/user'
 import router from './module/router'
-import getters from './getter'
-// import saveInLocal from './plugin/saveInLocal.js'
+import tabNav from './module/tabNav'
+// import saveInLocal from './plugin/saveInLocal'
 
 Vue.use(Vuex)
 
-// 一定要Vuex.store方法创建实例
 export default new Vuex.Store({
+  strict: false,
   state,
   getters,
   mutations,
   actions,
   modules: {
     user,
-    router
-  },
-  //关闭严格模式
-  strict: false
-  // 持久化插件。如何使用，这样插件就加载上了
+    router,
+    tabNav
+  }
   // plugins: [ saveInLocal ]
 })

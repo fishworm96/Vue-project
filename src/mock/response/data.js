@@ -1,5 +1,6 @@
 import { doCustomTimes } from '@/lib/tools'
 import Mock from 'mockjs'
+const Random = Mock.Random
 
 export const getTableData = () => {
   const template = {
@@ -8,7 +9,6 @@ export const getTableData = () => {
     email: '@email'
   }
   let arr = []
-  //发起请求时返回5条数据
   doCustomTimes(5, () => {
     arr.push(Mock.mock(template))
   })
@@ -18,7 +18,7 @@ export const getTableData = () => {
 export const getFileList = () => {
   const template = {
     'name|5': '@cword',
-    'creat_tiem': '@datatiem',
+    'creat_time': '@datetime',
     'folder_id|1-5': 0,
     'id|+1': 10000
   }
@@ -32,13 +32,13 @@ export const getFileList = () => {
 export const getFolderList = () => {
   const template1 = {
     'name|1': '@word',
-    'creat_tiem': '@datatime',
+    'creat_time': '@datetime',
     'folder_id': 0,
     'id|+1': 1
   }
   const template2 = {
     'name|1': '@word',
-    'creat_time': '@datatime',
+    'creat_time': '@datetime',
     'folder_id|+1': 1,
     'id|+1': 4
   }

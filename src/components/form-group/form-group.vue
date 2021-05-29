@@ -1,31 +1,27 @@
 <template>
-  <Form ref="form"
-        v-if="Object.keys(valueList).length"
-        :label-width="labelWidth"
-        :model="valueList"
-        :rules="rules">
-    <FormItem v-for="(item, index) in list"
-              :label="item.label"
-              label-position="left"
-              :prop="item.name"
-              :error="errorStore[item.name]"
-                 @click.native="handleFocus(item.name)"
-              :key="`${_uid}_${index}`">
-      <component :is="item.type"
-                 :range="item.range"
-                 v-model="valueList[item.name]">
+  <Form ref="form" v-if="Object.keys(valueList).length" :label-width="labelWidth" :model="valueList" :rules="rules">
+    <FormItem
+      v-for="(item, index) in list"
+      :label="item.label"
+      label-position="left"
+      :prop="item.name"
+      :error="errorStore[item.name]"
+      :key="`${_uid}_${index}`"
+      @click.native="handleFocus(item.name)"
+    >
+      <component :is="item.type" :range="item.range" v-model="valueList[item.name]">
         <template v-if="item.children">
-          <component v-for="(child, i) in item.children.list"
-                     :is="item.children.type"
-                     :key="`${_uid}_${index}_${i}}`"
-                     :label="child.label"
-                     :value="child.value">{{child.title}}</component>
+          <component
+            v-for="(child, i) in item.children.list"
+            :is="item.children.type"
+            :key="`${_uid}_${index}_${i}`"
+            :label="child.label"
+            :value="child.value">{{ child.title }}</component>
         </template>
       </component>
     </FormItem>
     <FormItem>
-      <Button @click="handleSubmit"
-              type="primary">提交</Button>
+      <Button @click="handleSubmit" type="primary">提交</Button>
       <Button @click="handleReset">重置</Button>
     </FormItem>
   </Form>
@@ -55,7 +51,7 @@ export default {
     },
     url: {
       type: String,
-      require: true
+      required: true
     }
   },
   watch: {
@@ -80,9 +76,6 @@ export default {
       this.initValueList = initValueList
       this.errorStore = errorStore
     },
-    handleReset () {
-      this.valueList = clonedeep(this.initValueList)
-    },
     handleSubmit () {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -100,7 +93,10 @@ export default {
         }
       })
     },
-    handleFocus(name) {
+    handleReset () {
+      this.valueList = clonedeep(this.initValueList)
+    },
+    handleFocus (name) {
       this.errorStore[name] = ''
     }
   },
@@ -109,3 +105,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

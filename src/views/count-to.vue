@@ -1,36 +1,34 @@
 <template>
   <div>
     <count-to ref="countTo" :end-val="endVal" @on-animation-end="handleEnd">
-      <span slot="left">总金额: </span>
+      <span slot="left">总金额： </span>
       <span slot="right">元</span>
     </count-to>
     <button @click="getNumber">获取数值</button>
     <button @click="up">更新值</button>
   </div>
 </template>
-
- <script>
+<script>
 import CountTo from '@/components/count-to'
 export default {
   name: 'count_to',
   components: {
     CountTo
   },
-  data() {
+  data () {
     return {
       endVal: 100
     }
   },
   methods: {
-    getNumber() {
-      // ref在组件上使用就是调用实例，在html上使用就是调用dom
+    getNumber () {
       this.$refs.countTo.getCount()
     },
-    up() {
+    up () {
       this.endVal += Math.random() * 100
     },
-    handleEnd(endVal) {
-      console.log('end ->', endVal)
+    handleEnd (endVal) {
+      console.log('end -> ', endVal)
     }
   }
 }

@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <li v-for="(item, index) in list" :key="`list_item_${index}`">
+  <ul>
+    <li @mousemove="handleMove" v-for="(item, index) in list" :key="`item_${index}`">
       <!-- <span v-if="!render">{{ item.number }}</span>
       <render-dom v-else :render-func="render" :number="item.number"></render-dom> -->
+      <slot name="aa" :number="item.number"></slot>
       <slot :number="item.number"></slot>
     </li>
-  </div>
+  </ul>
 </template>
-
 <script>
-import RenderDom from '_c/render-dom.js'
+import RenderDom from '_c/render-dom'
 export default {
   name: 'List',
   components: {
@@ -20,10 +20,14 @@ export default {
       type: Array,
       default: () => []
     },
-    // 如果想在span标签里显示这里的render就需要用到render组件。
     render: {
       type: Function,
       default: () => {}
+    }
+  },
+  methods: {
+    handleMove (event) {
+      event.preventDefault()
     }
   }
 }

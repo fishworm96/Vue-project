@@ -1,6 +1,5 @@
 <template>
-  <Table :columns="insideColumns"
-         :data="value"></Table>
+  <Table :columns="insideColumns" :data="value"></Table>
 </template>
 
 <script>
@@ -61,7 +60,7 @@ export default {
                 {keyArr && keyArr.indexOf(column.key) > -1
                   ? <i-input value={row[column.key]} style="width: 50px;" on-input={this.handleInput.bind(this, row, index, column)}></i-input>
                   : <span>{row[column.key]}</span>}
-                <i-button on-click={() => { this.handleClick({ row, index, column }) }}>{keyArr && keyArr.indexOf(column.key) > -1 ? '保存' : '编辑'}</i-button>
+                <i-button on-click={() => { this.handleClick({ row, index, column }) }}>{ keyArr && keyArr.indexOf(column.key) > -1 ? '保存' : '编辑' }</i-button>
               </div>
             )
           }
@@ -78,4 +77,5 @@ export default {
 </script>
 
 <style>
+
 </style>

@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <!-- 如果没有传入参数，那么就是默认的apple
-    <b>{{ food }}</b>
+    <!-- <b>{{ food }}</b>
     <button @click="handleClick('back')">返回上一页</button>
-    <button @click="handleClick('push')">返回上一页</button>
-    <button @click="handleClick('parent')">替换到parent</button>
-    <button @click="getInfo">请求数据</button>
-    <button @click="handleLogout">退出登录</button>
-    <router-view></router-view> -->
+    <button @click="handleClick('push')">跳转到parent</button>
+    <button @click="handleClick('replace')">替换到parent</button>
+    <button @click="getInfo" :style="{ background: bgColor }">请求数据</button>
+    <img :src="url">
+    <button @click="handleLogout">退出登录</button> -->
     <Row>
       <i-col></i-col>
     </Row>
@@ -15,28 +14,33 @@
       <i-col span="12">{{ rules }}</i-col>
       <i-col span="12"></i-col>
     </Row>
-    <Row :gutter="10"
-         class="blue">
+    <Row :gutter="10" class="blue">
       <i-col :md="6" :sm="12" :xs="24"></i-col>
       <i-col :md="6" :sm="12" :xs="24"></i-col>
       <i-col :md="6" :sm="12" :xs="24"></i-col>
       <i-col :md="6" :sm="12" :xs="24"></i-col>
     </Row>
     <Button v-if="rules.edit_button">编辑</Button>
-    <Button v-if="rules.edit_button">发布</Button>
+    <Button v-if="rules.publish_button">发布</Button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import { getUserInfo } from '@/api/user.js'
+import { getUserInfo } from '@/api/user'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
     HelloWorld
+  },
+  data () {
+    return {
+      url: '',
+      bgColor: ''
+    }
   },
   props: {
     food: {
@@ -44,35 +48,36 @@ export default {
       default: 'apple'
     }
   },
-  beforeRouterEnter (to, from, next) {
-    //跳转的页面此时this还没有加载出来，是不能用this的
-    next(vm => {
-      //这个vm就是组件的实例，这样就能在里面使用this了
+  computed: {
+    ...mapState({
+      rules: state => state.user.rules
     })
   },
-  beforeRouterLeave (to, from, next) {
-    //将要离开页面时调用钩子方法
-    const leave = confirm('您确定要离开吗？')
-    if (leave) next()
-    else next(false)
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      // console.log(vm)
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    // const leave = confirm('您确定要离开吗？')
+    // if (leave) next()
+    // else next(false)
+    next()
   },
   methods: {
     ...mapActions([
       'logout'
     ]),
     handleClick (type) {
-      // this.$router.go(-1)
       if (type === 'back') this.$router.back()
       else if (type === 'push') {
         this.$router.push({
-          name: 'parent',
-          query: {
+          name: `argu`,
+          params: {
             name: 'lison'
           }
-        }
-        )
+        })
       } else if (type === 'replace') {
-        // replace替换，把当前的浏览历史替换成parent这个页面，之后再做回退会回到到parent
         this.$router.replace({
           name: 'parent'
         })
@@ -80,7 +85,9 @@ export default {
     },
     getInfo () {
       getUserInfo({ userId: 21 }).then(res => {
-        console.log('res: ', res)
+        console.log('res: ', res.data)
+        this.url = res.data.img
+        this.bgColor = res.data.color
       })
     },
     handleLogout () {
@@ -89,25 +96,19 @@ export default {
         name: 'login'
       })
     }
-  },
-  computed: {
-    ...mapState ({
-      rules: state => state.user.rules
-    })
   }
 }
 </script>
-
 <style lang="less">
-.home {
-  .ivu-col {
+.home{
+  .ivu-col{
     height: 50px;
     margin-top: 10px;
-    background-color: pink;
+    background: pink;
     background-clip: content-box;
   }
-  .blue {
-    .ivu-col {
+  .blue{
+    .ivu-col{
       background: blue;
       background-clip: content-box;
     }

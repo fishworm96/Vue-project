@@ -1,7 +1,6 @@
 <template>
-  <input @input="handleInput" :value="value">
+  <input @input="handleInput" :value="value"/>
 </template>
-
 <script>
 export default {
   name: 'AInput',
@@ -12,10 +11,10 @@ export default {
     }
   },
   methods: {
-    handleInput(event) {
+    handleInput (event) {
       const value = event.target.value
       this.$emit('input', value)
     }
-  },
+  }
 }
 </script>

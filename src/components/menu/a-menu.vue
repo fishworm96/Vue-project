@@ -6,18 +6,18 @@
 
 <script>
 export default {
-  name: 'AMenu'
+  nmae: 'AMenu'
 }
 </script>
 
 <style lang="less">
-  .a-menu {
-    & * {
+.a-menu{
+  & *{
     list-style: none;
-    }
-    ul {
-      padding: 0;
-      margin: 0;
-    }
   }
+  ul{
+    padding: 0;
+    margin: 0;
+  }
+}
 </style>

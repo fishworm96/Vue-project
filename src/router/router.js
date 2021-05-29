@@ -82,7 +82,7 @@ export const routerMap = [
     },
     children: [
       {
-        path: '/table',
+        path: 'table',
         name: 'table_page',
         meta: {
           title: '表格'
@@ -169,11 +169,6 @@ export const routerMap = [
       title: 'sotre'
     },
     component: () => import('@/views/store.vue')
-  },
-  {
-    path: '/optimize',
-    name: 'optimize',
-    component: () => import('@/views/optimize.vue')
   }
 ]
 

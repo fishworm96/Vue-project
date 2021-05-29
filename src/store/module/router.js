@@ -1,4 +1,5 @@
 import { routes, routerMap } from '@/router/router'
+
 const state = {
   routers: routes,
   hasGetRules: false
@@ -11,10 +12,10 @@ const mutations = {
   }
 }
 
-const getAccessRoutreList = (routes, rules) => {
+const getAccesRouterList = (routes, rules) => {
   return routes.filter(item => {
     if (rules[item.name]) {
-      if (item.children) item.children = getAccessRoutreList(item.children, rules)
+      if (item.children) item.children = getAccesRouterList(item.children, rules)
       return true
     } else return false
   })
@@ -28,11 +29,11 @@ const actions = {
         if (Object.entries(rules).every(item => item[1])) {
           routerList = routerMap
         } else {
-          routerList = getAccessRoutreList(routerMap, rules)
+          routerList = getAccesRouterList(routerMap, rules)
         }
         commit('CONCAT_ROUTES', routerList)
         resolve(state.routers)
-      }catch (err) {
+      } catch (err) {
         reject(err)
       }
     })

@@ -52,7 +52,7 @@ export const deleteFile = key => {
   })
 }
 
-export const sentFormData = ({ url, data}) => {
+export const sentFormData = ({ url, data }) => {
   return axios.request({
     url,
     data,

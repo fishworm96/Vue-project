@@ -174,6 +174,14 @@ export const routerMap = [
 
 export const routes = [
   {
+    path: '/',
+    name: 'login',
+    meta: {
+      title: '登录'
+    },
+    component: () => import('@/views/login.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     meta: {

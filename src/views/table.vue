@@ -41,7 +41,7 @@ export default {
   },
   mounted () {
     getTableData().then(res => {
-      this.tableData = res
+      this.tableData = res.data
     })
   }
 }

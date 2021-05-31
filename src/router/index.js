@@ -8,7 +8,7 @@ import clonedeep from 'clonedeep'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'hash',
+  // mode: 'hash',
   routes
 })
 

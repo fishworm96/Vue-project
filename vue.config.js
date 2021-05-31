@@ -12,7 +12,7 @@ module.exports = {
   //判断开发环境还是生产环境
   // '/'一个斜线意思是指定在域名的根目录下
   //如果是开发环境只用写一个斜杠
-  publicPath: process.env.NODE_ENV === 'procution' ? '/dist/' : '/',
+  publicPath: process.env.NODE_ENV === 'procution' ? '/vue-project/' : '/',
   chainWebpack: config => {
     config.resolve.alias
       // 代表当前路径拼接上src
@@ -25,14 +25,14 @@ module.exports = {
   productionSourceMap: false,
   // 配置跨域，告诉开发服务器将任何未知请求，就是没有匹配到静态文件的请求都代理到这个url来满足跨域的请求
   devServer: {
-    // host: 'localhost',
-    // port: '8080',
-    // hot: true,
-    // open: true,
-    // overlay: {
-    //   warning: false,
-    //   error: true
-    // },
+    host: 'localhost',
+    port: '8080',
+    hot: true,
+    open: true,
+    overlay: {
+      warning: false,
+      error: true
+    },
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         target: process.env.VUE_APP_BASE_API,

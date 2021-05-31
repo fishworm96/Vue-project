@@ -12,7 +12,7 @@ module.exports = {
   //判断开发环境还是生产环境
   // '/'一个斜线意思是指定在域名的根目录下
   //如果是开发环境只用写一个斜杠
-  publicPath: process.env.NODE_ENV === 'procution' ? '/vue-project/' : '/',
+  publicPath: process.env.NODE_ENV === 'procution' ? '/' : '/',
   chainWebpack: config => {
     config.resolve.alias
       // 代表当前路径拼接上src

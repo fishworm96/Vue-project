@@ -22,9 +22,6 @@ export const routerMap = [
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
     props: {
       food: 'banana'
@@ -37,7 +34,7 @@ export const routerMap = [
     path: '/count-to',
     name: 'count_to',
     meta: {
-      title: 'count_to'
+      title: '计算组件'
     },
     component: () => import('@/views/count-to.vue')
   },
@@ -45,7 +42,7 @@ export const routerMap = [
     path: '/menu_page',
     name: 'menu_page',
     meta: {
-      title: 'menu_page'
+      title: '菜单页'
     },
     component: () => import('@/views/menu-page.vue')
   },
@@ -53,7 +50,7 @@ export const routerMap = [
     path: '/upload',
     name: 'upload',
     meta: {
-      title: 'upload'
+      title: '上传'
     },
     component: () => import('@/views/upload.vue')
   },
@@ -61,7 +58,7 @@ export const routerMap = [
     path: '/form',
     name: 'form',
     meta: {
-      title: 'form'
+      title: '表单'
     },
     component: () => import('@/views/form.vue')
   },
@@ -155,18 +152,10 @@ export const routerMap = [
     }
   },
   {
-    path: '/main',
-    name: 'main',
-    meta: {
-      title: 'main'
-    },
-    redirect: to => '/'
-  },
-  {
     path: '/store',
     name: 'store',
     meta: {
-      title: 'sotre'
+      title: '动态注册模块'
     },
     component: () => import('@/views/store.vue')
   }

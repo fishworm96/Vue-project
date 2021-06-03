@@ -20,14 +20,14 @@ router.beforeEach((to, from, next) => {
   //   if (HAS_LOGINED) next()
   //   else next({ name: 'login' })
   // } else {
-  //   if (HAS_LOGINED) next({ name: 'home' })
+  //   if (HAS_LOGINED) next({ name: 'home_index' })
   //   else next()
   // }
 
   // const token = getToken()
   // if (token) {
   //   store.dispatch('authorization', token).then(() => {
-  //     if (to.name === 'login') next({ name: 'home' })
+  //     if (to.name === 'login') next({ name: 'home_index' })
   //     else next()
   //   }).catch(() => {
   //     setToken('')

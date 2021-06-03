@@ -6,38 +6,57 @@ export const routerMap = [
     name: 'home',
     component: Layout,
     meta: {
-      title: '首页'
+      title: '首页',
+      hideInMenu: true
     },
     children: [
       {
         path: 'home_index',
         name: 'home_index',
         meta: {
-          title: '首页'
+          title: '首页',
+          hideInMenu: true
         },
         component: Home
       }
     ]
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
-    props: {
-      food: 'banana'
-    },
+    path: '/about_page',
+    name: 'about_page',
+    component: Layout,
     meta: {
-      title: '关于'
-    }
+
+    },
+    children: [{
+      path: '/about',
+      name: 'about',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+      props: {
+        food: 'banana'
+      },
+      meta: {
+        title: '关于'
+      }
+    }]
   },
   {
-    path: '/count-to',
-    name: 'count_to',
+    path: 'count',
+    name: 'count',
+    component: Layout,
     meta: {
-      title: '计算组件'
+
     },
-    component: () => import('@/views/count-to.vue')
+    children: [{
+      path: '/count-to',
+      name: 'count_to',
+      meta: {
+        title: '计算组件'
+      },
+      component: () => import('@/views/count-to.vue')
+    }]
   },
+
   {
     path: '/menu_page',
     name: 'menu_page',
@@ -47,20 +66,36 @@ export const routerMap = [
     component: () => import('@/views/menu-page.vue')
   },
   {
-    path: '/upload',
+    path: 'upload',
     name: 'upload',
+    component: Layout,
     meta: {
-      title: '上传'
+
     },
-    component: () => import('@/views/upload.vue')
+    children: [{
+      path: '/upload_page',
+      name: 'upload_page',
+      meta: {
+        title: '上传'
+      },
+      component: () => import('@/views/upload.vue')
+    }]
   },
   {
     path: '/form',
     name: 'form',
+    component: Layout,
     meta: {
-      title: '表单'
+
     },
-    component: () => import('@/views/form.vue')
+    children: [{
+      path: '/form_page',
+      name: 'form_page',
+      meta: {
+        title: '大量表单处理'
+      },
+      component: () => import('@/views/form.vue')
+    }]
   },
   {
     path: '/optimize',
@@ -106,18 +141,26 @@ export const routerMap = [
     ]
   },
   {
-    path: '/render_page',
-    name: 'render_page',
+    path: 'rander',
+    name: 'rander',
+    component: Layout,
     meta: {
-      title: 'render_page'
+
     },
-    component: () => import('@/views/render-page.vue')
+    children: [{
+      path: '/render_page',
+      name: 'render_page',
+      meta: {
+        title: 'rander函数计算页'
+      },
+      component: () => import('@/views/render-page.vue')
+    }]
   },
   {
     path: '/split-pane',
     name: 'split_pane',
     meta: {
-      title: 'split_pane'
+      title: '分割窗口'
     },
     component: () => import('@/views/split-pane.vue')
   },

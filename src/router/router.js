@@ -7,7 +7,6 @@ export const routerMap = [
     component: Layout,
     meta: {
       title: '首页',
-      hideInMenu: true
     },
     children: [
       {
@@ -15,7 +14,6 @@ export const routerMap = [
         name: 'home_index',
         meta: {
           title: '首页',
-          hideInMenu: true
         },
         component: Home
       }
@@ -56,14 +54,21 @@ export const routerMap = [
       component: () => import('@/views/count-to.vue')
     }]
   },
-
   {
-    path: '/menu_page',
-    name: 'menu_page',
+    path: '/menu',
+    name: 'menu',
+    component: Layout,
     meta: {
-      title: '菜单页'
+
     },
-    component: () => import('@/views/menu-page.vue')
+    children: [{
+      path: '/menu_page',
+      name: 'menu_page',
+      meta: {
+        title: '菜单页'
+      },
+      component: () => import('@/views/menu-page.vue')
+    },]
   },
   {
     path: 'upload',
@@ -98,12 +103,20 @@ export const routerMap = [
     }]
   },
   {
-    path: '/optimize',
-    name: 'optimize',
+    path: '/optimize_page',
+    name: 'optimize_page',
+    component: Layout,
     meta: {
-      title: 'optimize'
+
     },
-    component: () => import('@/views/optimize.vue')
+    children: [{
+      path: '/optimize',
+      name: 'optimize',
+      meta: {
+        title: 'optimize'
+      },
+      component: () => import('@/views/optimize.vue')
+    },]
   },
   {
     path: '/component',
@@ -157,12 +170,20 @@ export const routerMap = [
     }]
   },
   {
-    path: '/split-pane',
-    name: 'split_pane',
+    path: '/split',
+    name: 'split',
+    component: Layout,
     meta: {
-      title: '分割窗口'
+      title: 'split'
     },
-    component: () => import('@/views/split-pane.vue')
+    children: [{
+      path: '/split-pane',
+      name: 'split_pane',
+      meta: {
+        title: '分割窗口'
+      },
+      component: () => import('@/views/split-pane.vue')
+    },]
   },
   {
     path: '/parent',
@@ -183,24 +204,40 @@ export const routerMap = [
     ]
   },
   {
-    path: '/named_view',
-    name: 'named_view',
+    path: '/named',
+    name: 'named',
+    component: Layout,
     meta: {
-      title: 'named_view'
+      title: 'named'
     },
-    components: {
-      default: () => import('@/views/child.vue'),
-      email: () => import('@/views/email.vue'),
-      tel: () => import('@/views/tel.vue')
-    }
+    children: [{
+      path: '/named_view',
+      name: 'named_view',
+      meta: {
+        title: 'named_view'
+      },
+      components: {
+        default: () => import('@/views/child.vue'),
+        email: () => import('@/views/email.vue'),
+        tel: () => import('@/views/tel.vue')
+      }
+    },]
   },
   {
-    path: '/store',
+    path: '/store_page',
     name: 'store',
+    component: Layout,
     meta: {
-      title: '动态注册模块'
+      title: 'store'
     },
-    component: () => import('@/views/store.vue')
+    children: [{
+      path: '/store',
+      name: 'store',
+      meta: {
+        title: '动态注册模块'
+      },
+      component: () => import('@/views/store.vue')
+    }]
   }
 ]
 
@@ -222,12 +259,20 @@ export const routes = [
     component: () => import('@/views/login.vue')
   },
   {
-    path: '/icon_page',
-    name: 'icon_page',
+    path: '/icon',
+    name: 'icon',
+    component: Layout,
     meta: {
-      title: '图标'
+      title: 'icon'
     },
-    component: () => import('@/views/icon_page.vue')
+    children: [{
+      path: '/icon_page',
+      name: 'icon_page',
+      meta: {
+        title: '图标'
+      },
+      component: () => import('@/views/icon_page.vue')
+    }]
   },
   {
     path: '*',

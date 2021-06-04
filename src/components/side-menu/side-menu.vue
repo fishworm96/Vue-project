@@ -4,13 +4,17 @@
     <Menu ref="menu" :active-name="$route.name" :open-names="openNames" v-show="!collapsed" width="auto" theme="dark" @on-select="handleSelect">
       <template v-for="item in list">
         <re-submenu
-          v-if="item.children"
+          v-if="item.children && item.children.length !== 1"
           :key="`menu_${item.name}`"
           :name="item.name"
           :parent="item"
         >
         </re-submenu>
-        <menu-item v-else :key="`menu_${item.name}`" :name="item.name">
+        <menu-item v-else-if="item.children && item.children.length == 1" :key="`menu_${item.children[0].name}`" :name="item.children[0].name">
+          <Icon :type="item.icon" />
+          {{ item.children[0].meta.title }}
+        </menu-item>
+        <menu-item v-if="!item.children" :key="`menu_${item.name}`" :name="item.name">
           <Icon :type="item.icon" />
           {{ item.meta.title }}
         </menu-item>

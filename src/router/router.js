@@ -14,6 +14,7 @@ export const routerMap = [
         name: 'home_index',
         meta: {
           title: '首页',
+          icon: 'md-home'
         },
         component: Home
       }
@@ -34,7 +35,8 @@ export const routerMap = [
         food: 'banana'
       },
       meta: {
-        title: '关于'
+        title: '关于',
+        icon: 'ios-book'
       }
     }]
   },
@@ -49,7 +51,8 @@ export const routerMap = [
       path: '/count-to',
       name: 'count_to',
       meta: {
-        title: '计算组件'
+        title: '计算组件',
+        icon: 'md-trending-up'
       },
       component: () => import('@/views/count-to.vue')
     }]
@@ -65,7 +68,8 @@ export const routerMap = [
       path: '/menu_page',
       name: 'menu_page',
       meta: {
-        title: '菜单页'
+        title: '菜单页',
+        icon: 'md-menu'
       },
       component: () => import('@/views/menu-page.vue')
     },]
@@ -81,7 +85,8 @@ export const routerMap = [
       path: '/upload_page',
       name: 'upload_page',
       meta: {
-        title: '上传'
+        title: '上传',
+        icon: 'md-cloud-upload'
       },
       component: () => import('@/views/upload.vue')
     }]
@@ -97,7 +102,8 @@ export const routerMap = [
       path: '/form_page',
       name: 'form_page',
       meta: {
-        title: '大量表单处理'
+        title: '大量表单处理',
+        icon: 'ios-book'
       },
       component: () => import('@/views/form.vue')
     }]
@@ -113,7 +119,8 @@ export const routerMap = [
       path: '/optimize',
       name: 'optimize',
       meta: {
-        title: 'optimize'
+        title: 'optimize',
+        icon: 'ios-book'
       },
       component: () => import('@/views/optimize.vue')
     },]
@@ -123,14 +130,17 @@ export const routerMap = [
     name: 'component',
     component: Layout,
     meta: {
-      title: '表格'
+      title: '表格',
+      icon: 'md-home',
+      icon: 'ios-hammer'
     },
     children: [
       {
         path: 'table',
         name: 'table_page',
         meta: {
-          title: '表格'
+          title: '表格',
+          icon: 'md-home'
         },
         component: () => import('@/views/table.vue')
       },
@@ -138,7 +148,8 @@ export const routerMap = [
         path: 'folder_tree',
         name: 'folder_tree',
         meta: {
-          title: '文件夹'
+          title: '文件夹',
+          icon: 'md-home'
         },
         component: () => import('@/views/folder-tree/folder-tree.vue')
       },
@@ -146,7 +157,8 @@ export const routerMap = [
         path: 'params/:id',
         name: 'params',
         meta: {
-          title: '参数'
+          title: '参数',
+          icon: 'md-home'
         },
         component: () => import('@/views/argu.vue'),
         props: true
@@ -164,7 +176,8 @@ export const routerMap = [
       path: '/render_page',
       name: 'render_page',
       meta: {
-        title: 'rander函数计算页'
+        title: 'rander函数计算页',
+        icon: 'ios-book'
       },
       component: () => import('@/views/render-page.vue')
     }]
@@ -180,7 +193,8 @@ export const routerMap = [
       path: '/split-pane',
       name: 'split_pane',
       meta: {
-        title: '分割窗口'
+        title: '分割窗口',
+        icon: 'ios-book'
       },
       component: () => import('@/views/split-pane.vue')
     },]
@@ -197,7 +211,8 @@ export const routerMap = [
         path: 'child',
         name: 'child',
         meta: {
-          title: 'child'
+          title: 'child',
+          icon: 'ios-book'
         },
         component: () => import('@/views/child.vue')
       }
@@ -214,7 +229,8 @@ export const routerMap = [
       path: '/named_view',
       name: 'named_view',
       meta: {
-        title: 'named_view'
+        title: 'named_view',
+        icon: 'ios-book'
       },
       components: {
         default: () => import('@/views/child.vue'),
@@ -234,7 +250,8 @@ export const routerMap = [
       path: '/store',
       name: 'store',
       meta: {
-        title: '动态注册模块'
+        title: '动态注册模块',
+        icon: 'ios-book'
       },
       component: () => import('@/views/store.vue')
     }]
@@ -269,7 +286,8 @@ export const routes = [
       path: '/icon_page',
       name: 'icon_page',
       meta: {
-        title: '图标'
+        title: '图标',
+        icon: 'ios-book'
       },
       component: () => import('@/views/icon_page.vue')
     }]

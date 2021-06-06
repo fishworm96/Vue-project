@@ -4,28 +4,29 @@
     <Menu ref="menu" :active-name="$route.name" :open-names="openNames" v-show="!collapsed" width="auto" theme="dark" @on-select="handleSelect">
       <template v-for="item in list">
         <re-submenu
-          v-if="item.children && item.children.length !== 1"
-          :key="`menu_${item.name}`"
-          :name="item.name"
+          v-if="item.children && item.children.length > 1"
+          :key="`menu_${item.children.name}`"
+          :name="item.children.name"
           :parent="item"
         >
         </re-submenu>
-        <menu-item v-else-if="item.children && item.children.length == 1" :key="`menu_${item.children[0].name}`" :name="item.children[0].name">
-          <Icon :type="item.icon" />
+        <menu-item v-else-if="item.children && item.children.length == 1" :key="`menu_${item.name}`" :name="item.children[0].name">
+          <Icon :type="item.children[0].meta.icon" />
           {{ item.children[0].meta.title }}
         </menu-item>
-        <menu-item v-if="!item.children" :key="`menu_${item.name}`" :name="item.name">
-          <Icon :type="item.icon" />
+        <!-- 待删 -->
+        <!-- <menu-item v-else-if="!item.children" :key="`menu_${item.name}`" :name="item.name">
+          <Icon :type="item.meta.icon" />
           {{ item.meta.title }}
-        </menu-item>
+        </menu-item> -->
       </template>
     </Menu>
     <div v-show="collapsed" class="drop-wrapper">
       <template v-for="item in list">
-        <re-dropdown @on-select="handleSelect" v-if="item.children" :show-title="false" icon-color="#fff" :key="`drop_${item.name}`" :parent="item"></re-dropdown>
-        <Tooltip v-else transfer :content="item.title" placement="right" :key="`drop_${item.name}`">
-          <span @click="handleClick(item.name)" class="drop-menu-span">
-            <Icon :type="item.icon" color="#fff" :size="20"></Icon>
+        <re-dropdown @on-select="handleSelect" v-if="item.children && item.children.length > 1" :show-title="false" icon-color="#fff" :key="`drop_${item.children.name}`" :parent="item"></re-dropdown>
+        <Tooltip v-else transfer :content="item.children[0].meta.title" placement="right" :key="`drop_${item.children[0].name}`">
+          <span @click="handleClick(item.children[0].name)" class="drop-menu-span">
+            <Icon :type="item.children[0].meta.icon" color="#fff" :size="20"></Icon>
           </span>
         </Tooltip>
       </template>
@@ -76,7 +77,7 @@ export default {
       })
     },
     handleClick (name) {
-      console.log(name)
+      this.$router.push({name})
     }
   }
 }
@@ -95,6 +96,9 @@ export default {
     display: block;
     padding: 5px;
     margin: 0 auto;
+  }
+  .ivu-select-dropdown {
+    margin-left: 12px;
   }
 }
 </style>

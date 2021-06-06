@@ -199,46 +199,46 @@ export const routerMap = [
       component: () => import('@/views/split-pane.vue')
     },]
   },
-  {
-    path: '/parent',
-    name: 'parent',
-    meta: {
-      title: 'parent'
-    },
-    component: () => import('@/views/parent.vue'),
-    children: [
-      {
-        path: 'child',
-        name: 'child',
-        meta: {
-          title: 'child',
-          icon: 'ios-book'
-        },
-        component: () => import('@/views/child.vue')
-      }
-    ]
-  },
   // {
-  //   path: '/named',
-  //   name: 'named',
-  //   component: Layout,
+  //   path: '/parent',
+  //   name: 'parent',
   //   meta: {
-  //     title: 'named'
+  //     title: 'parent'
   //   },
-  //   children: [{
-  //     path: '/named_view',
-  //     name: 'named_view',
-  //     meta: {
-  //       title: 'named_view',
-  //       icon: 'ios-book'
-  //     },
-  //     components: {
-  //       default: () => import('@/views/child.vue'),
-  //       email: () => import('@/views/email.vue'),
-  //       tel: () => import('@/views/tel.vue')
+  //   component: () => import('@/views/parent.vue'),
+  //   children: [
+  //     {
+  //       path: '/child',
+  //       name: 'child',
+  //       meta: {
+  //         title: 'child',
+  //         icon: 'ios-book'
+  //       },
+  //       component: () => import('@/views/child.vue')
   //     }
-  //   }]
+  //   ]
   // },
+  {
+    path: '/named',
+    name: 'named',
+    component: Layout,
+    meta: {
+      title: 'named'
+    },
+    children: [{
+      path: '/named_view',
+      name: 'named_view',
+      meta: {
+        title: 'named_view',
+        icon: 'ios-book'
+      },
+      components: {
+        default: () => import('@/views/child.vue'),
+        email: () => import('@/views/email.vue'),
+        tel: () => import('@/views/tel.vue')
+      }
+    }]
+  },
   {
     path: '/store_page',
     name: 'store',

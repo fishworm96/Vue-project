@@ -16,6 +16,7 @@
                 @click.native="handleCollapsed"
                 type="md-menu"
                 :size="32" />
+                <user :user-avatar="userAvatar"/>
         </Header>
         <Content class="content-con">
           <div>
@@ -42,11 +43,13 @@
 
 <script>
 import SideMenu from '_c/side-menu'
+import User from '_c/user'
 import { mapState, mapMutations, mapActions } from 'vuex'
 import { getTabNameByRoute, getRouteById } from '@/lib/util'
 export default {
   components: {
-    SideMenu
+    SideMenu,
+    User
   },
   data () {
     return {
@@ -66,7 +69,10 @@ export default {
       routers: state => state.router.routers.filter(item => {
         return item.path !== '*' && item.name !== 'login'
       })
-    })
+    }),
+    userAvatar () {
+      return this.$store.state.user.avatarImgPath
+    }
   },
   methods: {
     ...mapActions([

@@ -199,25 +199,25 @@ export const routerMap = [
       component: () => import('@/views/split-pane.vue')
     },]
   },
-  // {
-  //   path: '/parent',
-  //   name: 'parent',
-  //   meta: {
-  //     title: 'parent'
-  //   },
-  //   component: () => import('@/views/parent.vue'),
-  //   children: [
-  //     {
-  //       path: '/child',
-  //       name: 'child',
-  //       meta: {
-  //         title: 'child',
-  //         icon: 'ios-book'
-  //       },
-  //       component: () => import('@/views/child.vue')
-  //     }
-  //   ]
-  // },
+  {
+    path: '/parent',
+    name: 'parent',
+    meta: {
+      title: 'parent'
+    },
+    component: () => import('@/views/parent.vue'),
+    children: [
+      {
+        path: '/child',
+        name: 'child',
+        meta: {
+          title: 'child',
+          icon: 'ios-book'
+        },
+        component: () => import('@/views/child.vue')
+      }
+    ]
+  },
   {
     path: '/named',
     name: 'named',

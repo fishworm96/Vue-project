@@ -16,7 +16,8 @@
                 @click.native="handleCollapsed"
                 type="md-menu"
                 :size="32" />
-                <user :user-avatar="userAvatar"/>
+          <user :user-avatar="userAvatar" />
+
         </Header>
         <Content class="content-con">
           <div>
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+// import HeaderBar from '_c/header-bar'
 import SideMenu from '_c/side-menu'
 import User from '_c/user'
 import { mapState, mapMutations, mapActions } from 'vuex'
@@ -49,7 +51,8 @@ import { getTabNameByRoute, getRouteById } from '@/lib/util'
 export default {
   components: {
     SideMenu,
-    User
+    User,
+    // HeaderBar
   },
   data () {
     return {
@@ -65,6 +68,7 @@ export default {
       ]
     },
     ...mapState({
+      collapsedStatus: state => state.tabNav.collapsedStatus,
       tabList: state => state.tabNav.tabList,
       routers: state => state.router.routers.filter(item => {
         return item.path !== '*' && item.name !== 'login'
@@ -78,9 +82,12 @@ export default {
     ...mapActions([
       'handleRemove'
     ]),
-    handleCollapsed () {
-      this.collapsed = !this.collapsed
-    },
+    ...mapMutations([
+      'CHANGE_COLLAPSED'
+    ]),
+    // collapsedChange (state) {
+    //   this.collapsed = state
+    // },
     handleClickTab (id) {
       let route = getRouteById(id)
       this.$router.push(route)
@@ -103,7 +110,18 @@ export default {
           </div>
         )
       }
+    },
+    handleCollapsed () {
+      this.collapsed = !this.collapsed
     }
+  },
+  watch: {
+    collapsed () {
+      this.$store.commit('CHANGE_COLLAPSED', this.collapsed)
+    }
+  },
+  created () {
+      this.collapsed = this.collapsedStatus
   }
 }
 </script>

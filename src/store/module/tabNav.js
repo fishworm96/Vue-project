@@ -1,7 +1,8 @@
 import { routeHasExist, getRouteById, routeEqual, localSave, localRead } from '@/lib/util'
 
 const state = {
-  tabList: JSON.parse(localRead('tabList') || '[]')
+  tabList: JSON.parse(localRead('tabList') || '[]'),
+  collapsedStatus: false
 }
 
 const getTabListToLocal = tabList => {
@@ -24,6 +25,9 @@ const mutations = {
   REMOVE_TAB (state, index) {
     state.tabList.splice(index, 1)
     localSave('tabList', JSON.stringify(getTabListToLocal(state.tabList)))
+  },
+  CHANGE_COLLAPSED (state, collapsed) {
+    state.collapsedStatus = collapsed
   }
 }
 

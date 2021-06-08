@@ -21,7 +21,7 @@
         </menu-item> -->
       </template>
     </Menu>
-    <div v-show="collapsed" class="drop-wrapper">
+      <div v-show="collapsed" class="drop-wrapper">
       <template v-for="item in list">
         <re-dropdown @on-select="handleSelect" v-if="item.children && item.children.length > 1" :show-title="false" icon-color="#fff" :key="`drop_${item.children.name}`" :parent="item"></re-dropdown>
         <Tooltip v-else transfer :content="item.children[0].meta.title" placement="right" :key="`drop_${item.children[0].name}`">
@@ -47,8 +47,7 @@ export default {
   },
   props: {
     collapsed: {
-      type: Boolean,
-      default: false
+      type: Boolean
     },
     list: {
       type: Array,

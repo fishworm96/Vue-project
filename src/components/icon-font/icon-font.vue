@@ -4,10 +4,12 @@
 
 <script>
 export default {
+  name: 'icon_font',
   props: {
     icon: {
       type: String,
-      default: ''
+      default: '',
+      require: true
     },
     size: {
       type: Number,
@@ -34,7 +36,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

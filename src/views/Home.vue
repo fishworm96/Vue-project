@@ -1,57 +1,55 @@
 <template>
   <div class="home">
-    <!-- <b>{{ food }}</b>
-    <button @click="handleClick('back')">返回上一页</button>
-    <button @click="handleClick('push')">跳转到parent</button>
-    <button @click="handleClick('replace')">替换到parent</button>
-    <button @click="getInfo" :style="{ background: bgColor }">请求数据</button>
-    <img :src="url">
-    <button @click="handleLogout">退出登录</button> -->
-    <Row>
-      <i-col></i-col>
+    <Row :gutter="20">
+      <i-col :md="8" :lg="4" :xs="12" v-for="(infor, i) in inforCardData" :key="`infor_${i}`" style="height: 120px;padding-bottom: 10px">
+        <infor-card shadow :color="infor.color" :icon="infor.icon" :icon-size="36" style="height: 100%">
+        <count-to :end-val="infor.count" class="countSize" />
+        <p>{{ infor.title }}</p>
+        </infor-card>
+      </i-col>
     </Row>
-    <Row :gutter="10">
-      <i-col span="12">{{ rules }}</i-col>
-      <i-col span="12"></i-col>
-    </Row>
-    <Row :gutter="10" class="blue">
-      <i-col :md="6" :sm="12" :xs="24"></i-col>
-      <i-col :md="6" :sm="12" :xs="24"></i-col>
-      <i-col :md="6" :sm="12" :xs="24"></i-col>
-      <i-col :md="6" :sm="12" :xs="24"></i-col>
-    </Row>
-    <Button v-if="rules.edit_button">编辑</Button>
-    <Button v-if="rules.publish_button">发布</Button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import { getUserInfo } from '@/api/user'
-import { mapState, mapActions } from 'vuex'
-
+import CountTo from '_c/count-to'
+import InforCard from '_c/infor-card'
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    CountTo,
+    InforCard
   },
   data () {
     return {
-      url: '',
-      bgColor: ''
-    }
-  },
-  props: {
-    food: {
-      type: String,
-      default: 'apple'
+      inforCardData: [
+        { title: '新增用户', icon: 'md-person-add', count: 803, color: '#2d8cf0' },
+        { title: '累计点击', icon: 'md-locate', count: 232, color: '#19be6b' },
+        { title: '新增问答', icon: 'md-help-circle', count: 142, color: '#ff9900' },
+        { title: '分享统计', icon: 'md-share', count: 657, color: '#ed3f14' },
+        { title: '新增互动', icon: 'md-chatbubbles', count: 12, color: '#E46CBB' },
+        { title: '新增页面', icon: 'md-map', count: 14, color: '#9A66E4' }
+      ],
+      pieData: [
+        { value: 335, name: '直接访问' },
+        { value: 310, name: '邮件营销' },
+        { value: 234, name: '联盟广告' },
+        { value: 135, name: '视频广告' },
+        { value: 1548, name: '搜索引擎' }
+      ],
+      barData: {
+        Mon: 13253,
+        Tue: 34235,
+        Wed: 26321,
+        Thu: 12340,
+        Fri: 24643,
+        Sat: 1322,
+        Sun: 1324
+      }
     }
   },
   computed: {
-    ...mapState({
-      rules: state => state.user.rules
-    })
+
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
@@ -65,53 +63,14 @@ export default {
     next()
   },
   methods: {
-    ...mapActions([
-      'logout'
-    ]),
-    handleClick (type) {
-      if (type === 'back') this.$router.back()
-      else if (type === 'push') {
-        this.$router.push({
-          name: `argu`,
-          params: {
-            name: 'lison'
-          }
-        })
-      } else if (type === 'replace') {
-        this.$router.replace({
-          name: 'parent'
-        })
-      }
-    },
-    getInfo () {
-      getUserInfo({ userId: 21 }).then(res => {
-        console.log('res: ', res.data)
-        this.url = res.data.img
-        this.bgColor = res.data.color
-      })
-    },
-    handleLogout () {
-      this.logout()
-      this.$router.push({
-        name: 'login'
-      })
-    }
+
   }
 }
 </script>
 <style lang="less">
 .home{
-  .ivu-col{
-    height: 50px;
-    margin-top: 10px;
-    background: pink;
-    background-clip: content-box;
-  }
-  .blue{
-    .ivu-col{
-      background: blue;
-      background-clip: content-box;
-    }
+  .countSize {
+    font-size: 50px;
   }
 }
 </style>

@@ -165,6 +165,7 @@ export default {
     }
   }
   .page-card {
+    background: #F5F7F9;
     min-height: ~"calc(100vh - 84px)";
   }
   // .ivu-icon-md-close-circle:before {

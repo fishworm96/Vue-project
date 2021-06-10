@@ -1,12 +1,39 @@
 <template>
   <div class="home">
     <Row :gutter="20">
-      <i-col :md="8" :lg="4" :xs="12" v-for="(infor, i) in inforCardData" :key="`infor_${i}`" style="height: 120px;padding-bottom: 10px">
-        <infor-card shadow :color="infor.color" :icon="infor.icon" :icon-size="36" style="height: 100%">
-        <count-to :end-val="infor.count" class="countSize" />
-        <p>{{ infor.title }}</p>
+      <i-col :md="8"
+             :lg="4"
+             :xs="12"
+             v-for="(infor, i) in inforCardData"
+             :key="`infor_${i}`"
+             style="height: 120px;padding-bottom: 10px">
+        <infor-card shadow
+                    :color="infor.color"
+                    :icon="infor.icon"
+                    :icon-size="36"
+                    style="height: 100%">
+          <count-to :end-val="infor.count"
+                    class="countSize" />
+          <p>{{ infor.title }}</p>
         </infor-card>
       </i-col>
+    </Row>
+    <Row :gutter="20" style="margin-top: 10px;">
+      <i-col :md="24" :lg="8" style="margin-bottom: 20px;">
+        <Card shadow>
+          <chart-pie style="height: 300px;" :value="pieData" text="用户访问来源"></chart-pie>
+        </Card>
+      </i-col>
+      <i-col :md="24" :lg="16" style="margin-bottom: 20px;">
+        <Card shadow>
+          <chart-bar style="height: 300px;" :value="barData" text="每周用户活跃量"/>
+        </Card>
+      </i-col>
+    </Row>
+    <Row>
+      <Card shadow>
+        <example style="height: 310px;"/>
+      </Card>
     </Row>
   </div>
 </template>
@@ -14,11 +41,15 @@
 <script>
 import CountTo from '_c/count-to'
 import InforCard from '_c/infor-card'
+import { ChartPie, ChartBar, Example } from '_c/charts'
 export default {
   name: 'home',
   components: {
     CountTo,
-    InforCard
+    InforCard,
+    ChartPie,
+    ChartBar,
+    Example
   },
   data () {
     return {
@@ -68,7 +99,7 @@ export default {
 }
 </script>
 <style lang="less">
-.home{
+.home {
   .countSize {
     font-size: 50px;
   }

@@ -20,33 +20,30 @@ export const routerMap = [
       }
     ]
   },
-  {
-    path: '/about_page',
-    name: 'about_page',
-    component: Layout,
-    meta: {
+  // {
+  //   path: '/about_page',
+  //   name: 'about_page',
+  //   component: Layout,
+  //   meta: {
 
-    },
-    children: [{
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
-      props: {
-        food: 'banana'
-      },
-      meta: {
-        title: '关于',
-        icon: 'ios-book'
-      }
-    }]
-  },
+  //   },
+  //   children: [{
+  //     path: '/about',
+  //     name: 'about',
+  //     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+  //     props: {
+  //       food: 'banana'
+  //     },
+  //     meta: {
+  //       title: '关于',
+  //       icon: 'ios-book'
+  //     }
+  //   }]
+  // },
   {
     path: 'count',
     name: 'count',
     component: Layout,
-    meta: {
-
-    },
     children: [{
       path: '/count-to',
       name: 'count_to',
@@ -58,29 +55,9 @@ export const routerMap = [
     }]
   },
   {
-    path: '/menu',
-    name: 'menu',
-    component: Layout,
-    meta: {
-
-    },
-    children: [{
-      path: '/menu_page',
-      name: 'menu_page',
-      meta: {
-        title: '菜单页',
-        icon: 'md-menu'
-      },
-      component: () => import('@/views/menu-page.vue')
-    },]
-  },
-  {
     path: 'upload',
     name: 'upload',
     component: Layout,
-    meta: {
-
-    },
     children: [{
       path: '/upload_page',
       name: 'upload_page',
@@ -91,47 +68,46 @@ export const routerMap = [
       component: () => import('@/views/upload.vue')
     }]
   },
-  {
-    path: '/form',
-    name: 'form',
-    component: Layout,
-    meta: {
+  // {
+  //   path: '/form',
+  //   name: 'form',
+  //   component: Layout,
+  //   meta: {
 
-    },
-    children: [{
-      path: '/form_page',
-      name: 'form_page',
-      meta: {
-        title: '大量表单处理',
-        icon: 'ios-book'
-      },
-      component: () => import('@/views/form.vue')
-    }]
-  },
-  {
-    path: '/optimize_page',
-    name: 'optimize_page',
-    component: Layout,
-    meta: {
+  //   },
+  //   children: [{
+  //     path: '/form_page',
+  //     name: 'form_page',
+  //     meta: {
+  //       title: '大量表单处理',
+  //       icon: 'ios-book'
+  //     },
+  //     component: () => import('@/views/form.vue')
+  //   }]
+  // },
+  // {
+  //   path: '/optimize_page',
+  //   name: 'optimize_page',
+  //   component: Layout,
+  //   meta: {
 
-    },
-    children: [{
-      path: '/optimize',
-      name: 'optimize',
-      meta: {
-        title: 'optimize',
-        icon: 'ios-book'
-      },
-      component: () => import('@/views/optimize.vue')
-    },]
-  },
+  //   },
+  //   children: [{
+  //     path: '/optimize',
+  //     name: 'optimize',
+  //     meta: {
+  //       title: 'optimize',
+  //       icon: 'ios-book'
+  //     },
+  //     component: () => import('@/views/optimize.vue')
+  //   },]
+  // },
   {
     path: '/component',
     name: 'component',
     component: Layout,
     meta: {
       title: '表格',
-      icon: 'md-home',
       icon: 'ios-hammer'
     },
     children: [
@@ -165,23 +141,23 @@ export const routerMap = [
       }
     ]
   },
-  {
-    path: 'rander',
-    name: 'rander',
-    component: Layout,
-    meta: {
+  // {
+  //   path: 'rander',
+  //   name: 'rander',
+  //   component: Layout,
+  //   meta: {
 
-    },
-    children: [{
-      path: '/render_page',
-      name: 'render_page',
-      meta: {
-        title: 'rander函数计算页',
-        icon: 'ios-book'
-      },
-      component: () => import('@/views/render-page.vue')
-    }]
-  },
+  //   },
+  //   children: [{
+  //     path: '/render_page',
+  //     name: 'render_page',
+  //     meta: {
+  //       title: 'rander函数计算页',
+  //       icon: 'ios-book'
+  //     },
+  //     component: () => import('@/views/render-page.vue')
+  //   }]
+  // },
   {
     path: '/split',
     name: 'split',
@@ -199,6 +175,64 @@ export const routerMap = [
       component: () => import('@/views/split-pane.vue')
     },]
   },
+  {
+    path: '/multilevel',
+    name: 'multilevel',
+    component: Layout,
+    meta: {
+      title: '多级表格',
+      icon: 'md-menu'
+    },
+    children: [
+      {
+        path: '/level-2-1',
+        name: 'level-2-1',
+        meta: {
+          title: 'level-2-1',
+          icon: 'md-funnel'
+        },
+        component: () => import('_c/multilevel/level-2-1.vue')
+      },
+      {
+        path: '/level-2-2',
+        name: 'level-2-2',
+        meta: {
+          title: 'level-2-2',
+          icon: 'md-funnel'
+        },
+        component: () => import('_c/multilevel/level-2-2.vue')
+      },
+      {
+        path: '/level-2-3',
+        name: 'level-2-3',
+        meta: {
+          title: 'level-2-3',
+          icon: 'md-funnel'
+        },
+        component: () => import('_c/multilevel/parentView.vue'),
+        children: [
+          {
+            path: '/level-2-3-1',
+            name: 'level-2-3-1',
+            meta: {
+              title: 'level-2-3-1',
+              icon: 'md-funnel'
+            },
+            component: () => import('_c/multilevel/level-2-3/level-2-3-1.vue')
+          },
+          {
+            path: '/level-2-3-2',
+            name: 'level-2-3-2',
+            meta: {
+              title: 'level-2-3-2',
+              icon: 'md-funnel'
+            },
+            component: () => import('_c/multilevel/level-2-3/level-2-3-2.vue')
+          }
+        ]
+      }
+    ]
+  }
   // {
   //   path: '/parent',
   //   name: 'parent',
@@ -218,44 +252,44 @@ export const routerMap = [
   //     }
   //   ]
   // },
-  {
-    path: '/named',
-    name: 'named',
-    component: Layout,
-    meta: {
-      title: 'named'
-    },
-    children: [{
-      path: '/named_view',
-      name: 'named_view',
-      meta: {
-        title: 'named_view',
-        icon: 'ios-book'
-      },
-      components: {
-        default: () => import('@/views/child.vue'),
-        email: () => import('@/views/email.vue'),
-        tel: () => import('@/views/tel.vue')
-      }
-    }]
-  },
-  {
-    path: '/store_page',
-    name: 'store',
-    component: Layout,
-    meta: {
-      title: 'store'
-    },
-    children: [{
-      path: '/store',
-      name: 'store',
-      meta: {
-        title: '动态注册模块',
-        icon: 'ios-book'
-      },
-      component: () => import('@/views/store.vue')
-    }]
-  }
+  // {
+  //   path: '/named',
+  //   name: 'named',
+  //   component: Layout,
+  //   meta: {
+  //     title: 'named'
+  //   },
+  //   children: [{
+  //     path: '/named_view',
+  //     name: 'named_view',
+  //     meta: {
+  //       title: 'named_view',
+  //       icon: 'ios-book'
+  //     },
+  //     components: {
+  //       default: () => import('@/views/child.vue'),
+  //       email: () => import('@/views/email.vue'),
+  //       tel: () => import('@/views/tel.vue')
+  //     }
+  //   }]
+  // },
+  // {
+  //   path: '/store_page',
+  //   name: 'store',
+  //   component: Layout,
+  //   meta: {
+  //     title: 'store'
+  //   },
+  //   children: [{
+  //     path: '/store',
+  //     name: 'store',
+  //     meta: {
+  //       title: '动态注册模块',
+  //       icon: 'ios-book'
+  //     },
+  //     component: () => import('@/views/store.vue')
+  //   }]
+  // }
 ]
 
 export const routes = [

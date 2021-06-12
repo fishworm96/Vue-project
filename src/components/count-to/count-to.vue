@@ -1,6 +1,8 @@
 <template>
   <div>
-    <slot name="left"></slot><span ref="number" :class="countClass" :id="eleId"></span><slot name="right"></slot>
+    <slot name="left"></slot>
+    <span ref="number" :class="countClass" :id="eleId"></span>
+    <slot name="right"></slot>
   </div>
 </template>
 <script>
@@ -78,7 +80,7 @@ export default {
      */
     separator: {
       type: String,
-      default: ','
+      default: ''
     },
     /**
      * @description 整数和小数分割符号
@@ -95,19 +97,11 @@ export default {
   methods: {
     getCount () {
       return this.$refs.number.innerText
-    },
-    emitEndEvent () {
-      setTimeout(() => {
-        this.$nextTick(() => {
-          this.$emit('on-animation-end', Number(this.getCount()))
-        })
-      }, this.duration * 1000 + 5)
     }
   },
   watch: {
     endVal (newVal, oldVal) {
       this.counter.update(newVal)
-      this.emitEndEvent()
     }
   },
   mounted () {
@@ -120,12 +114,8 @@ export default {
       })
       setTimeout(() => {
         this.counter.start()
-        this.emitEndEvent()
       }, this.delay)
     })
   }
 }
 </script>
-<style lang="less">
-@import './count-to.less';
-</style>

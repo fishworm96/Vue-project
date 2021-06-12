@@ -10,7 +10,7 @@
           :parent="item"
         >
         </re-submenu>
-        <menu-item v-else-if="item.children && item.children.length == 1" :key="`menu_${item.name}`" :name="item.children[0].name">
+        <menu-item v-else :key="`menu_${item.name}`" :name="item.children[0].name">
           <Icon :type="item.children[0].meta.icon" />
           {{ item.children[0].meta.title }}
         </menu-item>

@@ -5,7 +5,7 @@
       <template v-for="item in list">
         <re-submenu
           v-if="item.children && item.children.length > 1"
-          :key="`menu_${item.children.name}`"
+          :key="`menu_${(item.children.name || item.name)}`"
           :name="item.children.name"
           :parent="item"
         >
@@ -23,7 +23,7 @@
     </Menu>
       <div v-show="collapsed" class="drop-wrapper">
       <template v-for="item in list">
-        <re-dropdown @on-select="handleSelect" v-if="item.children && item.children.length > 1" :show-title="false" icon-color="#fff" :key="`drop_${item.children.name}`" :parent="item"></re-dropdown>
+        <re-dropdown @on-select="handleSelect" v-if="item.children && item.children.length > 1" :show-title="false" icon-color="#fff" :key="`drop_${(item.children.name || item.name)}`" :parent="item"></re-dropdown>
         <Tooltip v-else transfer :content="item.children[0].meta.title" placement="right" :key="`drop_${item.children[0].name}`">
           <span @click="handleClick(item.children[0].name)" class="drop-menu-span">
             <Icon :type="item.children[0].meta.icon" color="#fff" :size="20"></Icon>

@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="count-to-wrapper">
     <slot name="left"></slot>
-    <span ref="number" :class="countClass" :id="eleId"></span>
+    <span :class="countClass"
+          :id="eleId">{{init}}</span>
+    <i :class="unitClass">{{unitText}}</i>
     <slot name="right"></slot>
   </div>
 </template>
@@ -18,14 +20,25 @@ export default {
         'count-to-number',
         this.className
       ]
+    },
+    unitClass () {
+      return [
+        'count-to-text',
+        this.countText
+      ]
     }
   },
   data () {
     return {
-      counter: {}
+      counter: {},
+      unitText: ''
     }
   },
   props: {
+    init: {
+      type: Number,
+      default: 0
+    },
     /**
      * @description 起始值
      */
@@ -89,24 +102,76 @@ export default {
       type: String,
       default: '.'
     },
+    /**
+ * @description 是否简化显示，设为true后会使用unit单位来做相关省略
+ */
+    simplify: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * @description 自定义单位，如[3, 'K+'], [6, 'M+']即大于3位数小于6位数的用k+来做省略
+     *              1000即显示为1K+
+     */
+    unit: {
+      type: Array,
+      default () {
+        return [[3, 'K+'], [6, 'M+'], [9, 'B+']]
+      }
+    },
     className: {
       type: String,
       default: ''
+    },
+    countText: {
+      type: String,
+      deafult: ''
     }
   },
   methods: {
-    getCount () {
-      return this.$refs.number.innerText
+    getHandleVal (val, len) {
+      return {
+        endVal: parseInt(val / Math.pow(10, this.unit[len - 1][0])),
+        unitText: this.unit[len - 1][1]
+      }
+    },
+    transformValue (val) {
+      let len = this.unit.length
+      let res = {
+        endVal: 0,
+        unitText: ''
+      }
+      if (val < Math.pow(10, this.unit[0][0])) res.endVal = val
+      else {
+        for (let i = 1; i < len; i++) {
+          if (val >= Math.pow(10, this.unit[i - 1][0]) && val < Math.pow(10, this.unit[i][0])) res = this.getHandleVal(val, i)
+        }
+      }
+      if (val > Math.pow(10, this.unit[len - 1][0])) res = this.getHandleVal(val, len)
+      return res
+    },
+    getValue (val) {
+      let res = 0
+      if (this.simplify) {
+        let { endVal, unitText } = this.transformValue(val)
+        this.unitText = unitText
+        res = endVal
+      } else {
+        res = val
+      }
+      return res
     }
   },
   watch: {
     endVal (newVal, oldVal) {
-      this.counter.update(newVal)
+      let endVal = this.getValue(newVal)
+      this.counter.update(endVal)
     }
   },
   mounted () {
     this.$nextTick(() => {
-      this.counter = new CountUp(this.eleId, this.startVal, this.endVal, this.decimals, this.duration, {
+      let endVal = this.getValue(this.endVal)
+      this.counter = new CountUp(this.eleId, this.startVal, endVal, this.decimals, this.duration, {
         useEasing: this.useEasing,
         useGrouping: this.useGrouping,
         separator: this.separator,

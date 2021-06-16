@@ -45,7 +45,7 @@ export const routerMap = [
     name: 'count',
     component: Layout,
     children: [{
-      path: '/count-to',
+      path: 'count-to',
       name: 'count_to',
       meta: {
         title: '计算组件',
@@ -59,7 +59,7 @@ export const routerMap = [
     name: 'upload',
     component: Layout,
     children: [{
-      path: '/upload_page',
+      path: 'upload_page',
       name: 'upload_page',
       meta: {
         title: '上传',
@@ -166,7 +166,7 @@ export const routerMap = [
       title: 'split'
     },
     children: [{
-      path: '/split-pane',
+      path: 'split-pane',
       name: 'split_pane',
       meta: {
         title: '分割窗口',
@@ -185,7 +185,7 @@ export const routerMap = [
     },
     children: [
       {
-        path: '/level-2-1',
+        path: 'level-2-1',
         name: 'level-2-1',
         meta: {
           title: 'level-2-1',
@@ -194,7 +194,7 @@ export const routerMap = [
         component: () => import('_c/multilevel/level-2-1.vue')
       },
       {
-        path: '/level-2-2',
+        path: 'level-2-2',
         name: 'level-2-2',
         meta: {
           title: 'level-2-2',
@@ -203,7 +203,7 @@ export const routerMap = [
         component: () => import('_c/multilevel/level-2-2.vue')
       },
       {
-        path: '/level-2-3',
+        path: 'level-2-3',
         name: 'level-2-3',
         meta: {
           title: 'level-2-3',
@@ -212,7 +212,7 @@ export const routerMap = [
         component: () => import('_c/multilevel/parentView.vue'),
         children: [
           {
-            path: '/level-2-3-1',
+            path: 'level-2-3-1',
             name: 'level-2-3-1',
             meta: {
               title: 'level-2-3-1',
@@ -221,7 +221,7 @@ export const routerMap = [
             component: () => import('_c/multilevel/level-2-3/level-2-3-1.vue')
           },
           {
-            path: '/level-2-3-2',
+            path: 'level-2-3-2',
             name: 'level-2-3-2',
             meta: {
               title: 'level-2-3-2',
@@ -296,9 +296,6 @@ export const routes = [
   {
     path: '/',
     name: 'login',
-    meta: {
-      title: '登录'
-    },
     component: () => import('@/views/login.vue')
   },
   {
@@ -317,7 +314,7 @@ export const routes = [
       title: 'icon'
     },
     children: [{
-      path: '/icon_page',
+      path: 'icon_page',
       name: 'icon_page',
       meta: {
         title: '图标',

@@ -41,7 +41,7 @@ export const routerMap = [
   //   }]
   // },
   {
-    path: 'count',
+    path: '/count',
     name: 'count',
     component: Layout,
     children: [{
@@ -55,7 +55,7 @@ export const routerMap = [
     }]
   },
   {
-    path: 'upload',
+    path: '/upload',
     name: 'upload',
     component: Layout,
     children: [{
